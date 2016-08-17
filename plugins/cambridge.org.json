@@ -1,0 +1,9 @@
+{
+	"type": "sandbox",
+	"ns": "nonymous",
+	"author": "gyl",
+	"prefix": "get all chapter urls for cambridge ebook",
+	"match": "^http://ebooks\\.cambridge\\.org/ebook\\.jsf.*$",
+	"resolve": "var reChapterLink = /href=\"chapter\\.jsf[^\"]*cid=([^\"]+)&[^\"]*\"/img;\nvar reCoverLink = /src=\"(http:\\/\\/ebooks\\.cambridge\\.org\\/content\\/[^\"]+\\.jpg)\"/img;\nvar urls = [];\nfunction processText(text) {\n\tvar m;\n\tif((m = reCoverLink.exec(text))) {\n\t\turls.push(m[1]);\n\t}\n\twhile((m = reChapterLink.exec(text))) {\n\t\turls.push(\"http://ebooks.cambridge.org/open_pdf/\"+m[1]);\n\t}\n\tfor (var url of urls) {\n\t\tqueueDownload(url);\n\t}\n\tsetURL(null);\n\tfinish();\n}\nprocessText(responseText);\n",
+	"static": true
+}

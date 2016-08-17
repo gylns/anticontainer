@@ -1,0 +1,9 @@
+{
+	"type": "sandbox",
+	"ns": "nonymous",
+	"author": "gyl",
+	"prefix": "get all chapter urls for ieee ebooks",
+	"match": "http://ieeexplore\\.ieee\\.org/xpl/bkabstractplus\\.jsp\\?bkn=.+",
+	"resolve": "var reChapterLink = /href=\"(\\/xpl\\/ebooks\\/bookPdfWithBanner[^\"]+)\"/img;\nvar reCoverLink = /src=\"(\\/ebooks\\/[^\"]+\\.jpg)\"/img;\nvar urls = [];\nfunction processText(text) {\n\tvar m;\n\tif((m = reCoverLink.exec(text))) {\n\t\turls.push(m[1]);\n\t}\n\twhile((m = reChapterLink.exec(text))) {\n\t\turls.push(m[1]);\n\t}\n\tfor (var url of urls) {\n\t\tqueueDownload(url);\n\t}\n\tsetURL(null);\n\tfinish();\n}\nprocessText(responseText);\n",
+	"static": true
+}
