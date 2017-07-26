@@ -1,4 +1,4 @@
-var reChapterLink = /href="(\/dg\/viewbooktoc\.chapterlist\.resultlinks\.fullcontentlink[^"]+)"/img;
+var reChapterLink = /href="(\/downloadpdf\/books\/[^"]+)"/img;
 var reCoverLink = /src="([^"]+cover[^"]+\.jpg)"/img;
 var urls = [];
 function processText(text) {

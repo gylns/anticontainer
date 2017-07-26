@@ -1,0 +1,9 @@
+{
+	"type": "sandbox",
+	"ns": "nonymous",
+	"author": "gyl",
+	"prefix": "theiet.org",
+	"match": "^http://digital-library\\.theiet\\.org/content/books/[^/]*/[^/?]*$",
+	"process": "var reURL = /^.*\\/books\\/([^/]*)\\/([^/]*)/i;\nvar m = reURL.exec(baseURL);\nvar p1 = m[1];\nvar p2 = m[2];\nvar url = \"http://digital-library.theiet.org/deliver/fulltext/books/\" +\n    p1 + \"/\" + p2 + \"/\" + p2.toUpperCase() + \".pdf?itemId=/content/books/\" +\n    p1 + \"/\" + p2 + \"&mimeType=pdf&isFastTrackArticle=\";\nsetURL(url);\nfinish();",
+	"static": true
+}
